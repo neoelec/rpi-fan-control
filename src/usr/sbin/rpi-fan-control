@@ -4,7 +4,7 @@ config="/etc/rpi-fan-control/rpi-fan-control.conf"
 . "$config"
 
 function get_cpu_temp {
-  /opt/vc/bin/vcgencmd measure_temp | grep -Eo "[0-9]*\." | sed 's/\.//g'
+  echo $((`cat /sys/class/thermal/thermal_zone0/temp` / 1000))
 }
 
 function set_pin {
